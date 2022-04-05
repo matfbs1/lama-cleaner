@@ -7,6 +7,7 @@ import os
 import time
 import imghdr
 from typing import Union
+from flask_ngrok import run_with_ngrok
 
 import cv2
 import torch
@@ -50,6 +51,7 @@ BUILD_DIR = os.environ.get("LAMA_CLEANER_BUILD_DIR",
 app = Flask(__name__, static_folder=os.path.join(BUILD_DIR, "static"))
 app.config["JSON_AS_ASCII"] = False
 CORS(app)
+run_with_ngrok(app)
 
 model = None
 device = None
