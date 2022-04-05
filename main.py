@@ -7,7 +7,7 @@ import os
 import time
 import imghdr
 from typing import Union
-from flask_ngrok import run_with_ngrok
+from pyngrok import ngrok
 
 import cv2
 import torch
@@ -51,7 +51,13 @@ BUILD_DIR = os.environ.get("LAMA_CLEANER_BUILD_DIR",
 app = Flask(__name__, static_folder=os.path.join(BUILD_DIR, "static"))
 app.config["JSON_AS_ASCII"] = False
 CORS(app)
-run_with_ngrok(app)
+
+ngrok.set_auth_token("25z4bkJ69ePRYMNcjC710fowAjb_QrF6DXPDqVRK5poPrgqp")
+port = 8080
+public_url = ngrok.connect(port).public_url
+print(" * ngrok tunnel \"{}\" -> \"http://127.0.0.1:{}\"".format(public_url, port))
+
+app.config["BASE_URL"] = public_url
 
 model = None
 device = None
