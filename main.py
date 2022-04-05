@@ -53,7 +53,7 @@ app.config["JSON_AS_ASCII"] = False
 CORS(app)
 
 ngrok.set_auth_token("25z4bkJ69ePRYMNcjC710fowAjb_QrF6DXPDqVRK5poPrgqp")
-port = 8080
+port = 5000
 public_url = ngrok.connect(port).public_url
 print(" * ngrok tunnel \"{}\" -> \"http://127.0.0.1:{}\"".format(public_url, port))
 
