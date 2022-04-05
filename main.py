@@ -171,7 +171,7 @@ def main():
         ui = FlaskUI(app, width=app_width, height=app_height)
         ui.run()
     else:
-        app.run(host="127.0.0.1", port=args.port, debug=args.debug)
+        app.run()
 
 
 if __name__ == "__main__":
